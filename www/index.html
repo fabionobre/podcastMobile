@@ -13,9 +13,9 @@
 <body>
 
 <style>
-
-.pagina { background-color: #FFF; }
-.conteudo {  }
+* { padding: 0; margin: 0; }
+.pagina { background-color: #FFF; padding: 0; margin: 0; height: 100%;}
+.conteudo { height: 100%; background-color: #FFF; }
 .barra-lateral-ativacao { background-color: #000; height: 100%; width: 10px; float: left; position: fixed; top: 0; left: 0;}
 .barra-lateral { background-color: #F00; height: 100%; width: 300px; float: left; position: fixed; top: 0; left: -300px; overflow-y: scroll; z-index: 100; }
 ul { list-style: none; }
@@ -26,7 +26,7 @@ ul { list-style: none; }
 .duracao_inicio { float: left; padding-top: 8px; }
 .duracao_fim { float: right; padding-top: 8px;}
 .player { float: right; }
-.lista_feeds li { height: 5em; }
+.lista_feeds li { height: 5em; border-bottom: 1px solid #AAA; padding: 2em 2em; }
 .botao_play {max-height: 100%; }
 </style>
 
@@ -55,11 +55,28 @@ ul { list-style: none; }
 					
 					<div data-role="rangeslider" data-mini="true">
 						<span class="duracao_inicio">0 min</span>
-						<input name="range-4a" id="range-4a" min="0" max="1000" value="0" type="range" style="display: none;" />
+						<input class="range-4a" name="range-4a" id="range-01" min="0" max="1000" value="0" type="range" style="display: none;" />
 						<span class="duracao_fim">30 min</span>
 					</div>					
 				</div>
 			</li>
+			
+			<li>
+				<div class="player">
+					<a href=""><img class="botao_play" src="img\play.png"></a>
+				</div>
+				
+				<div class="info">
+					<h1>Nerdcast</h1>
+					<h2>Nome do podcast que irá ser tocado</h2>
+					
+					<div data-role="rangeslider" data-mini="true">
+						<span class="duracao_inicio">0 min</span>
+						<input class="range-4a" name="range-4a" id="range-02" min="0" max="1000" value="0" type="range" style="display: none;" />
+						<span class="duracao_fim">30 min</span>
+					</div>					
+				</div>
+			</li>			
 		</ul>
 	</div>
 </div>
@@ -79,8 +96,8 @@ ul { list-style: none; }
 			$( "#barra-lateral" ).animate({ 'left' : -300 }, 500);
 		}			
 		
-		$( "#range-4a").on('slidestop', function( event ) {
-			var slider_value=$("#range-4a").slider().val();
+		$( ".range-4a").on('slidestop', function( event ) {
+			var slider_value= $(this).slider().val();
 			console.log(slider_value);
 		});		
 	});
